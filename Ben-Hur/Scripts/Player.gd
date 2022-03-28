@@ -63,7 +63,7 @@ func _process(delta):
 	position.x = clamp(position.x, 40, screen_size.x - 40)
 	position.y = clamp(position.y, 96, screen_size.y - 96)
 	
-	#set_anim(dir)
+	set_anim(dir)
 
 func start(pos):
 	position = pos
@@ -79,10 +79,10 @@ func set_anim(direc):
 			$AnimatedSprite.animation = "move_down"
 		1:
 			$AnimatedSprite.animation = "move_up"
-		2:
-			$AnimatedSprite.animation = "move_left"
-		3:
-			$AnimatedSprite.animation = "move_right"
+	#	2:
+	#		$AnimatedSprite.animation = "move_left"
+	#	3:
+	#		$AnimatedSprite.animation = "move_right"
 
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):

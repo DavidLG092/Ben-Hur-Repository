@@ -79,10 +79,10 @@ func set_anim(direc):
 			$AnimatedSprite.animation = "move_down"
 		1:
 			$AnimatedSprite.animation = "move_up"
-	#	2:
-	#		$AnimatedSprite.animation = "move_left"
-	#	3:
-	#		$AnimatedSprite.animation = "move_right"
+		2:
+			$AnimatedSprite.animation = "move_left"
+		3:
+			$AnimatedSprite.animation = "move_right"
 
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):

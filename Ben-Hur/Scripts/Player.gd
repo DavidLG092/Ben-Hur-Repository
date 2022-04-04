@@ -18,8 +18,16 @@ var r_free
 # Animation variables
 var dir
 
+# Player variables
+var life
+var shield
+var strength
+
+var bag # Bag is a 2d array and has to be given values such as [item, quantity]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Setting movement variables
 	screen_size = get_viewport_rect().size
 	
 	speed = 400
@@ -30,6 +38,12 @@ func _ready():
 	r_free = true
 	
 	dir = 0
+	
+	# Setting player variables
+	life = 30
+	shield = 0
+	
+	bag = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -65,6 +79,7 @@ func _process(delta):
 	
 	set_anim(dir)
 
+
 func start(pos):
 	position = pos
 	show()
@@ -72,6 +87,7 @@ func start(pos):
 	$Up_CollisionShape2D.disabled = false
 	$Left_CollisionShape2D.disabled = false
 	$Right_CollisionShape2D.disabled = false
+
 
 func set_anim(direc):
 	match direc:
@@ -97,6 +113,7 @@ func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape
 	if shape == $Right_CollisionShape2D:
 		r_free = false
 
+
 func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	var shape = self.shape_owner_get_owner(local_shape_index)
 	
@@ -108,3 +125,23 @@ func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_
 		l_free = true
 	if shape == $Right_CollisionShape2D:
 		r_free = true
+
+func set_life(val):
+	life = val
+
+func get_life():
+	return life
+
+
+func set_shield(val):
+	shield = val
+
+func get_shield():
+	return shield
+
+
+func set_strenght(val):
+	strength = val
+
+func get_strength():
+	return strength

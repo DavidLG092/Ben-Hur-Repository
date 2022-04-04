@@ -162,4 +162,10 @@ func remove_item(nm):
 	for i in range(0, bag.size()):
 		if bag[i][0].get_name() == nm:
 			bag.erase(bag[i])
+	# Theoretically, this works by iterating through the bag
+	# If one of its items name matches the given name, it erases that item
+	# Still have to figure out how I'm gonna make the player use items
 
+
+func use_item():
+	pass

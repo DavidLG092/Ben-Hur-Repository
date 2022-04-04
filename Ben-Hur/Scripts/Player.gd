@@ -28,6 +28,8 @@ var strength
 
 var bag # Bag is a 2d array and has to be given values such as [item, quantity]
 
+var menu
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Setting movement variables
@@ -47,27 +49,42 @@ func _ready():
 	shield = 0
 	
 	bag = []
+	
+	menu = false
+	
+	# Setting menu
+	$Menu.scale = Vector2(2, 2)
+	#$Menu.position = Vector2(0, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("move_down"):
-		if d_free == true:
-			velocity.y += 1
-		dir = 0
-	if Input.is_action_pressed("move_up"):
-		if u_free == true:
-			velocity.y -= 1
-		dir = 1
-	if Input.is_action_pressed("move_left"):
-		if l_free == true:
-			velocity.x -= 1
-		dir = 2
-	if Input.is_action_pressed("move_right"):
-		if r_free == true:
-			velocity.x += 1
-		dir = 3
+	if Input.is_action_just_pressed("interact_menu"):
+		if menu == true:
+			menu = false
+			$Menu.set_is_on(false)
+		else:
+			menu = true
+			$Menu.set_is_on(true)
+	
+	if menu == false:
+		if Input.is_action_pressed("move_down"):
+			if d_free == true:
+				velocity.y += 1
+			dir = 0
+		if Input.is_action_pressed("move_up"):
+			if u_free == true:
+				velocity.y -= 1
+			dir = 1
+		if Input.is_action_pressed("move_left"):
+			if l_free == true:
+				velocity.x -= 1
+			dir = 2
+		if Input.is_action_pressed("move_right"):
+			if r_free == true:
+				velocity.x += 1
+			dir = 3
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

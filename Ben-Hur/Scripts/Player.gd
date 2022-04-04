@@ -53,8 +53,7 @@ func _ready():
 	menu = false
 	
 	# Setting menu
-	$Menu.scale = Vector2(2, 2)
-	#$Menu.position = Vector2(0, 0)
+	$Menu.scale = Vector2(3, 3)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -64,6 +63,7 @@ func _process(delta):
 		if menu == true:
 			menu = false
 			$Menu.set_is_on(false)
+			$Menu.position = Vector2(0, 0)
 		else:
 			menu = true
 			$Menu.set_is_on(true)
@@ -98,7 +98,9 @@ func _process(delta):
 	position.y = clamp(position.y, 96, screen_size.y - 96)
 	
 	set_anim(dir)
-
+	
+	$Label.text = str(position)
+	$Label2.text = str(position.y)
 
 func start(pos):
 	position = pos

@@ -6,6 +6,7 @@ extends Object
 # var b = "text"
 
 # Item variables
+var name
 var strength # Named "strength" but can also be used to determine item effectiveness
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,13 @@ var strength # Named "strength" but can also be used to determine item effective
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func set_name(val):
+	name = val
+
+func get_name():
+	return name
+
 
 func set_strength(val):
 	strength = val

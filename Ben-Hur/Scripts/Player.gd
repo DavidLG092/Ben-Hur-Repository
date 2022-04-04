@@ -5,6 +5,9 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
+# Class constants
+const item = preload("res://Scripts/Item.gd")
+
 # Movement variables
 var screen_size
 
@@ -145,3 +148,18 @@ func set_strenght(val):
 
 func get_strength():
 	return strength
+
+
+func add_item(nm, stre, q):
+	var it = item.new()
+	
+	it.set_name(nm)
+	it.set_strength(stre)
+	
+	bag.append([it.get_name(), q])
+
+func remove_item(nm):
+	for i in range(0, bag.size()):
+		if bag[i][0].get_name() == nm:
+			bag.erase(bag[i])
+

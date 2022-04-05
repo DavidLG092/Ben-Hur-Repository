@@ -26,14 +26,23 @@ func _ready():
 	menu_on = false
 	
 	$Label_Menu.text = "MENU"
-	$Label_Menu.size_flags_horizontal = 1
-	$Label_Menu.size_flags_vertical = 1
-	$Label_Menu.show()
+	$Label_Menu.rect_scale = Vector2(0.15, 0.15)
+	$Label_Menu.rect_position = Vector2(-5, -7)
+	$Label_Menu.hide()
+	
 	$Label_Bag.text = "BAG"
+	$Label_Bag.rect_scale = Vector2(0.25, 0.25)
+	$Label_Bag.rect_position = Vector2(-31, 0)
 	$Label_Bag.hide()
+	
 	$Label_Map.text = "MAP"
+	$Label_Map.rect_scale = Vector2(0.25, 0.25)
+	$Label_Map.rect_position = Vector2(-7, 0)
 	$Label_Map.hide()
+	
 	$Label_Exit.text = "EXIT"
+	$Label_Exit.rect_scale = Vector2(0.25, 0.25)
+	$Label_Exit.rect_position = Vector2(16, 0)
 	$Label_Exit.hide()
 	
 	$Label_Sure.text = "ARE YOU SURE?"
@@ -48,6 +57,7 @@ func _ready():
 func _process(delta):
 	if menu_on == true:
 		show()
+		
 		if bag == false and map == false and exit == false:
 			if Input.is_action_just_pressed("move_left"):
 				if $AnimatedSprite.frame == 0:

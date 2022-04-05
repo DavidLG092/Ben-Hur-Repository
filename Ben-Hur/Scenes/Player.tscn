@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Judah/Citizen/Images/Down/judah_citizen_down_0.png" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://Sprites/Judah/Citizen/Images/Right/judah_citizen_right_0.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Judah/Citizen/Images/Right/judah_citizen_right_1.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Judah/Citizen/Images/Right/judah_citizen_right_2.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -45,12 +44,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
-
-[sub_resource type="DynamicFontData" id=6]
-font_path = "res://Fonts/Arcade/ARCADE_N.TTF"
-
-[sub_resource type="DynamicFont" id=7]
-font_data = SubResource( 6 )
 
 [node name="Player" type="Area2D"]
 scale = Vector2( 4, 4 )
@@ -86,19 +79,6 @@ rotation = 4.71239
 scale = Vector2( 1.28, 0.4 )
 shape = SubResource( 5 )
 one_way_collision = true
-
-[node name="Menu" parent="." instance=ExtResource( 14 )]
-
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-custom_fonts/font = SubResource( 7 )
-
-[node name="Label2" type="Label" parent="."]
-margin_top = 15.0
-margin_right = 40.0
-margin_bottom = 29.0
-custom_fonts/font = SubResource( 7 )
 
 [connection signal="area_shape_entered" from="." to="." method="_on_Area2D_area_shape_entered"]
 [connection signal="area_shape_exited" from="." to="." method="_on_Area2D_area_shape_exited"]

@@ -28,7 +28,7 @@ var strength
 
 var bag # Bag is a 2d array and has to be given values such as [item, quantity]
 
-var menu
+var menu_on
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +42,7 @@ func _ready():
 	l_free = true
 	r_free = true
 	
-	dir = 0
+	dir = Vector2(0, 0)
 	
 	# Setting player variables
 	life = 30
@@ -50,41 +50,34 @@ func _ready():
 	
 	bag = []
 	
-	menu = false
-	
-	# Setting menu
-	$Menu.scale = Vector2(3, 3)
+	menu_on = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
 	
-	if Input.is_action_just_pressed("interact_menu"):
-		if menu == true:
-			menu = false
-			$Menu.set_is_on(false)
-			$Menu.position = Vector2(0, 0)
-		else:
-			menu = true
-			$Menu.set_is_on(true)
-	
-	if menu == false:
+	if menu_on == false:
 		if Input.is_action_pressed("move_down"):
 			if d_free == true:
 				velocity.y += 1
-			dir = 0
+			dir.y = 1
 		if Input.is_action_pressed("move_up"):
 			if u_free == true:
 				velocity.y -= 1
-			dir = 1
+			dir.y = -1
 		if Input.is_action_pressed("move_left"):
 			if l_free == true:
 				velocity.x -= 1
-			dir = 2
+			dir.x = -1
 		if Input.is_action_pressed("move_right"):
 			if r_free == true:
 				velocity.x += 1
-			dir = 3
+			dir.x = 1
+		
+		if Input.is_action_just_released("move_down") or Input.is_action_just_released("move_up"):
+			dir.y = 0
+		if Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right"):
+			dir.x = 0
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -98,9 +91,6 @@ func _process(delta):
 	position.y = clamp(position.y, 96, screen_size.y - 96)
 	
 	set_anim(dir)
-	
-	$Label.text = str(position)
-	$Label2.text = str(position.y)
 
 func start(pos):
 	position = pos
@@ -113,13 +103,23 @@ func start(pos):
 
 func set_anim(direc):
 	match direc:
-		0:
+		Vector2(0, 0):
 			$AnimatedSprite.animation = "move_down"
-		1:
+		Vector2(-1, 1):
+			$AnimatedSprite.animation = "move_down"
+		Vector2(0, 1):
+			$AnimatedSprite.animation = "move_down"
+		Vector2(1, 1):
+			$AnimatedSprite.animation = "move_down"
+		Vector2(-1, -1):
 			$AnimatedSprite.animation = "move_up"
-		2:
+		Vector2(0, -1):
+			$AnimatedSprite.animation = "move_up"
+		Vector2(1, -1):
+			$AnimatedSprite.animation = "move_up"
+		Vector2(-1, 0):
 			$AnimatedSprite.animation = "move_left"
-		3:
+		Vector2(1, 0):
 			$AnimatedSprite.animation = "move_right"
 
 
@@ -169,22 +169,26 @@ func get_strength():
 	return strength
 
 
-func add_item(nm, stre, q):
-	var it = item.new()
-	
-	it.set_name(nm)
-	it.set_strength(stre)
-	
-	bag.append([it.get_name(), q])
-
-func remove_item(nm):
-	for i in range(0, bag.size()):
-		if bag[i][0].get_name() == nm:
-			bag.erase(bag[i])
-	# Theoretically, this works by iterating through the bag
-	# If one of its items name matches the given name, it erases that item
-	# Still have to figure out how I'm gonna make the player use items
+func set_menu_on(val):
+	menu_on = val
 
 
-func use_item():
-	pass
+#func add_item(nm, stre, q):
+#	var it = item.new()
+#	
+#	it.set_name(nm)
+#	it.set_strength(stre)
+#	
+#	bag.append([it.get_name(), q])
+#
+#func remove_item(nm):
+#	for i in range(0, bag.size()):
+#		if bag[i][0].get_name() == nm:
+#			bag.erase(bag[i])
+#	# Theoretically, this works by iterating through the bag
+#	# If one of its items name matches the given name, it erases that item
+#	# Still have to figure out how I'm gonna make the player use items
+#
+#
+#func use_item():
+#	pass

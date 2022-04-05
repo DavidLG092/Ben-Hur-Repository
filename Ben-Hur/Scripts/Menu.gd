@@ -10,7 +10,7 @@ var bag
 var map
 var exit
 
-var is_on
+var menu_on
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,11 +22,13 @@ func _ready():
 	bag = false
 	map = false
 	exit = false
+	
+	menu_on = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_on == true:
+	if menu_on == true:
 		show()
 		if bag == false and map == false and exit == false:
 			if Input.is_action_just_pressed("move_left"):
@@ -51,6 +53,8 @@ func _process(delta):
 						map = true
 					2:
 						exit = true
+			if Input.is_action_just_pressed("spare_reject"):
+				menu_on = false
 		elif bag == true:
 			$Bag.show()
 		elif map == true:
@@ -80,5 +84,8 @@ func _process(delta):
 	else:
 		hide()
 
-func set_is_on(val):
-	is_on = val
+func set_menu_on(val):
+	menu_on = val
+
+func get_menu_on():
+	return menu_on

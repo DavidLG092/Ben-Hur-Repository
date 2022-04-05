@@ -27,6 +27,11 @@ var menu_on
 func _ready():
 	hide()
 	
+	# Setting up scenes
+	$Bag.hide()
+	$Bag.scale = Vector2(0.75, 0.75)
+	$Bag.position.y -= 12.4
+	
 	# Setting up sprites
 	$Sprite_Menu_Line.position = pos1
 	$Sprite_Confirmation_Line.position = c_pos1

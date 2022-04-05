@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Menu/Images/Confirmation/confirmation.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Menu/Images/Confirmation/confirmation_line.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Menu/Images/Menu/menu.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Menu/Images/Menu/menu_line.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Bag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fonts/Arcade/ARCADE_N.TTF" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=3]
@@ -72,3 +73,5 @@ margin_right = 40.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0.643137, 0.560784, 0.282353, 1 )
 custom_fonts/font = SubResource( 2 )
+
+[node name="Bag" parent="." instance=ExtResource( 6 )]

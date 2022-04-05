@@ -16,15 +16,18 @@ var menu_on
 func _ready():
 	hide()
 	
-	$AnimatedSprite.animation = "menu"
-	$AnimatedSprite.frame = 0
+	# Setting up sprites
+	$Sprite_Confirmation.hide()
+	$Sprite_Confirmation_Line.hide()
 	
+	# Setting up variables
 	bag = false
 	map = false
 	exit = false
 	
 	menu_on = false
 	
+	# Setting up labels
 	$Label_Menu.text = "MENU"
 	$Label_Menu.rect_scale = Vector2(0.15, 0.15)
 	$Label_Menu.rect_position = Vector2(-5, -7)
@@ -57,6 +60,12 @@ func _ready():
 func _process(delta):
 	if menu_on == true:
 		show()
+		
+		# Shows labels
+		$Label_Menu.show()
+		$Label_Bag.show()
+		$Label_Map.show()
+		$Label_Exit.show()
 		
 		if bag == false and map == false and exit == false:
 			if Input.is_action_just_pressed("move_left"):

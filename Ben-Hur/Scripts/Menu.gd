@@ -5,6 +5,13 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+# Sprite variables and constants
+const pos1 = Vector2(-25, 5)
+const pos2 = Vector2(-1.5, 5)
+const pos3 = Vector2(23.5, 5)
+
+var m_line_scale_x
+
 # Menu variables
 var bag
 var map
@@ -17,8 +24,13 @@ func _ready():
 	hide()
 	
 	# Setting up sprites
+	$Sprite_Menu_Line.position = pos1
+	
 	$Sprite_Confirmation.hide()
 	$Sprite_Confirmation_Line.hide()
+		
+	# Normal line scale
+	m_line_scale_x = $Sprite_Menu_Line.scale.x
 	
 	# Setting up variables
 	bag = false
@@ -69,26 +81,34 @@ func _process(delta):
 		
 		if bag == false and map == false and exit == false:
 			if Input.is_action_just_pressed("move_left"):
-				if $AnimatedSprite.frame == 0:
-					$AnimatedSprite.frame = 2
-				elif $AnimatedSprite.frame == 1:
-					$AnimatedSprite.frame = 0
-				else:
-					$AnimatedSprite.frame = 1
+				match $Sprite_Menu_Line.position:
+					pos1:
+						$Sprite_Menu_Line.position = pos3
+						$Sprite_Menu_Line.scale.x = 1.2
+					pos2:
+						$Sprite_Menu_Line.position = pos1
+						$Sprite_Menu_Line.scale.x = m_line_scale_x
+					pos3:
+						$Sprite_Menu_Line.position = pos2
+						$Sprite_Menu_Line.scale.x = m_line_scale_x
 			if Input.is_action_just_pressed("move_right"):
-				if $AnimatedSprite.frame == 0:
-					$AnimatedSprite.frame = 1
-				elif $AnimatedSprite.frame == 1:
-					$AnimatedSprite.frame = 2
-				else:
-					$AnimatedSprite.frame = 0
+				match $Sprite_Menu_Line.position:
+					pos1:
+						$Sprite_Menu_Line.position = pos2
+						$Sprite_Menu_Line.scale.x = m_line_scale_x
+					pos2:
+						$Sprite_Menu_Line.position = pos3
+						$Sprite_Menu_Line.scale.x = 1.2
+					pos3:
+						$Sprite_Menu_Line.position = pos1
+						$Sprite_Menu_Line.scale.x = m_line_scale_x
 			if Input.is_action_just_pressed("attack_confirm"):
-				match $AnimatedSprite.frame:
-					0:
+				match $Sprite_Menu_Line.position:
+					pos1:
 						bag = true
-					1:
+					pos2:
 						map = true
-					2:
+					pos3:
 						exit = true
 			if Input.is_action_just_pressed("spare_reject"):
 				menu_on = false

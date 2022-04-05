@@ -5,6 +5,7 @@
 [ext_resource path="res://Scripts/Room_0.gd" type="Script" id=3]
 
 [node name="Room_0" type="Node2D"]
+position = Vector2( 6, 1 )
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]

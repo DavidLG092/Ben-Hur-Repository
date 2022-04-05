@@ -164,6 +164,8 @@ func _process(delta):
 					c_pos2:
 						$Sprite_Confirmation.hide()
 						$Sprite_Confirmation_Line.hide()
+						$Sprite_Confirmation_Line.position = c_pos1
+						$Sprite_Confirmation_Line.scale.x = c_line_scale_x
 						
 						$Label_Sure.hide()
 						$Label_Yes.hide()
@@ -173,6 +175,8 @@ func _process(delta):
 			if Input.is_action_just_pressed("spare_reject"):
 				$Sprite_Confirmation.hide()
 				$Sprite_Confirmation_Line.hide()
+				$Sprite_Confirmation_Line.position = c_pos1
+				$Sprite_Confirmation_Line.scale.x = c_line_scale_x
 				
 				$Label_Sure.hide()
 				$Label_Yes.hide()
@@ -181,6 +185,8 @@ func _process(delta):
 				exit = false
 	else:
 		hide()
+		$Sprite_Menu_Line.position = pos1
+		$Sprite_Menu_Line.scale.x = m_line_scale_x
 
 func set_menu_on(val):
 	menu_on = val

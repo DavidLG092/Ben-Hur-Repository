@@ -24,6 +24,24 @@ func _ready():
 	exit = false
 	
 	menu_on = false
+	
+	$Label_Menu.text = "MENU"
+	$Label_Menu.size_flags_horizontal = 1
+	$Label_Menu.size_flags_vertical = 1
+	$Label_Menu.show()
+	$Label_Bag.text = "BAG"
+	$Label_Bag.hide()
+	$Label_Map.text = "MAP"
+	$Label_Map.hide()
+	$Label_Exit.text = "EXIT"
+	$Label_Exit.hide()
+	
+	$Label_Sure.text = "ARE YOU SURE?"
+	$Label_Sure.hide()
+	$Label_Yes.text = "YES"
+	$Label_Yes.hide()
+	$Label_No.text = "NO"
+	$Label_No.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

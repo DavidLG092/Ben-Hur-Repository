@@ -26,12 +26,13 @@ var life
 var shield
 var strength
 
-var bag # Bag is a 2d array and has to be given values such as [item, quantity]
-
 var menu_on
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Setting base animation
+	$AnimatedSprite.animation = "move_down"
+	
 	# Setting movement variables
 	screen_size = get_viewport_rect().size
 	
@@ -47,8 +48,6 @@ func _ready():
 	# Setting player variables
 	life = 30
 	shield = 0
-	
-	bag = []
 	
 	menu_on = false
 
@@ -104,7 +103,7 @@ func start(pos):
 func set_anim(direc):
 	match direc:
 		Vector2(0, 0):
-			$AnimatedSprite.animation = "move_down"
+			$AnimatedSprite.animation = $AnimatedSprite.animation
 		Vector2(-1, 1):
 			$AnimatedSprite.animation = "move_down"
 		Vector2(0, 1):
@@ -172,23 +171,3 @@ func get_strength():
 func set_menu_on(val):
 	menu_on = val
 
-
-#func add_item(nm, stre, q):
-#	var it = item.new()
-#	
-#	it.set_name(nm)
-#	it.set_strength(stre)
-#	
-#	bag.append([it.get_name(), q])
-#
-#func remove_item(nm):
-#	for i in range(0, bag.size()):
-#		if bag[i][0].get_name() == nm:
-#			bag.erase(bag[i])
-#	# Theoretically, this works by iterating through the bag
-#	# If one of its items name matches the given name, it erases that item
-#	# Still have to figure out how I'm gonna make the player use items
-#
-#
-#func use_item():
-#	pass

@@ -193,6 +193,7 @@ func _process(delta):
 		hide()
 		$Sprite_Menu_Line.position = pos1
 		$Sprite_Menu_Line.scale.x = m_line_scale_x
+		menu_on = false
 
 func set_menu_on(val):
 	menu_on = val

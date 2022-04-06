@@ -6,11 +6,11 @@ extends Node2D
 # var b = "text"
 
 # Menu variables
-var menu_on
-var bag_on
+var menu_on # This variables is used to make sure bag only answers to controls when the menu is not on
+var bag_on # This returns to the menu the bag has been closed
 
 # File variables
-var bag
+var bag # This variable is used to handle the "bag.txt" file
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,11 +57,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	bag_on = true
+	
 	# Controls line movement
 	if menu_on == false:
-		show()
 		
-		bag_on = true
+		show()
 		
 		if Input.is_action_just_pressed("move_down"):
 			if $Sprite_Line.position.y + 6 < 16.5:
@@ -80,8 +81,8 @@ func _process(delta):
 		if Input.is_action_just_pressed("attack_confirm"):
 			pass
 		if Input.is_action_pressed("spare_reject"):
-			menu_on = true
 			bag_on = false
+			menu_on = true
 			$Sprite_Line.position = Vector2(-15, -14.5)
 			
 	else:
@@ -93,6 +94,7 @@ func set_menu_on(val):
 
 func get_menu_on():
 	return menu_on
+
 
 func get_bag_on():
 	return bag_on

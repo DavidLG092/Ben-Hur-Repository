@@ -5,12 +5,20 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+# Menu variables
+var menu_on
+var bag_on
+
 # File variables
 var bag
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Sets menu
+	hide()
+	menu_on = true
+	bag_on = true
+	
 	# Checks if bag file exits, if not, creates file	bag = File.new()
 	bag = File.new()
 	
@@ -49,13 +57,42 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("move_down"):
-		if $Sprite_Line.position.y + 6 < 16.5:
-			$Sprite_Line.position.y += 6
-	if Input.is_action_just_pressed("move_up"):
-		if $Sprite_Line.position.y - 6 >= -14.5:
-			$Sprite_Line.position.y -= 6
-	if Input.is_action_just_pressed("move_left"):
-		$Sprite_Line.position.x = -15
-	if Input.is_action_just_pressed("move_right"):
-		$Sprite_Line.position.x = 15
+	# Controls line movement
+	if menu_on == false:
+		show()
+		
+		bag_on = true
+		
+		if Input.is_action_just_pressed("move_down"):
+			if $Sprite_Line.position.y + 6 < 16.5:
+				$Sprite_Line.position.y += 6
+		if Input.is_action_just_pressed("move_up"):
+			if $Sprite_Line.position.y - 6 >= -14.5:
+				$Sprite_Line.position.y -= 6
+		if Input.is_action_just_pressed("move_left"):
+			$Sprite_Line.position.x = -15
+		if Input.is_action_just_pressed("move_right"):
+			$Sprite_Line.position.x = 15
+		
+		# Controls items and menu
+		if Input.is_action_just_pressed("interact_menu"):
+			pass
+		if Input.is_action_just_pressed("attack_confirm"):
+			pass
+		if Input.is_action_pressed("spare_reject"):
+			menu_on = true
+			bag_on = false
+			$Sprite_Line.position = Vector2(-15, -14.5)
+			
+	else:
+		hide()
+
+
+func set_menu_on(val):
+	menu_on = val
+
+func get_menu_on():
+	return menu_on
+
+func get_bag_on():
+	return bag_on

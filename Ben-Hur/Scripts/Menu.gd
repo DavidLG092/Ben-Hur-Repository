@@ -133,7 +133,8 @@ func _process(delta):
 			if Input.is_action_just_pressed("spare_reject"):
 				menu_on = false
 		elif bag == true:
-			$Bag.show()
+			$Bag.set_menu_on(false)
+			bag = $Bag.get_bag_on()
 		elif map == true:
 			$Map.show()
 		elif exit == true:

@@ -23,7 +23,7 @@ func _ready():
 	
 	# Setting up sprites
 	$Sprite_Line.position = Vector2(-15, -14.5)
-	$Sprite_Line.scale.x = 1.5
+	$Sprite_Line.scale.x = 1.3
 	
 	# Setting up labels
 	$Label_Bag.text = "BAG"
@@ -33,7 +33,7 @@ func _ready():
 	
 	$Label_Items.text = "asaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa"
 	$Label_Items.rect_scale = Vector2(0.15, 0.15)
-	$Label_Items.rect_position = Vector2(-25, -18)
+	$Label_Items.rect_position = Vector2(-23, -18)
 	$Label_Items.show()
 	
 	$Label_Items_2.text = "asaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa"
@@ -50,9 +50,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("move_down"):
-		$Sprite_Line.position.y += 6
+		if $Sprite_Line.position.y + 6 < 16.5:
+			$Sprite_Line.position.y += 6
 	if Input.is_action_just_pressed("move_up"):
-		$Sprite_Line.position.y -= 6
+		if $Sprite_Line.position.y - 6 >= -14.5:
+			$Sprite_Line.position.y -= 6
 	if Input.is_action_just_pressed("move_left"):
 		$Sprite_Line.position.x = -15
 	if Input.is_action_just_pressed("move_right"):

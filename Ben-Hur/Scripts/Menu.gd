@@ -136,7 +136,7 @@ func _process(delta):
 			$Bag.set_menu_on(false)
 			bag = $Bag.get_bag_on()
 		elif map == true:
-			$Map.show()
+			$Map.set_menu_on(false)
 		elif exit == true:
 			# Shows sprites and labels
 			$Sprite_Confirmation.show()

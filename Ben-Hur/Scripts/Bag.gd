@@ -10,7 +10,10 @@ var menu_on # This variables is used to make sure bag only answers to controls w
 var bag_on # This returns to the menu the bag has been closed
 
 # File variables
+var path
 var bag # This variable is used to handle the "bag.txt" file
+var items_1
+var items_2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,13 +23,22 @@ func _ready():
 	bag_on = true
 	
 	# Checks if bag file exits, if not, creates file	bag = File.new()
+	path = "user://Desktop//bag.txt"
+	
 	bag = File.new()
 	
-	if bag.file_exists("user://Desktop//bag.txt") == true:
-		bag.open("C://Users//dgomes//Desktop//bag.txt", File.READ)
+	if bag.file_exists(path) == true:
+		bag.open(path, File.READ)
+		for i in range(0, 11):
+			if i <= 5:
+				items_1 = bag.get_line()
+			else:
+				items_2 = bag.get_line()
 		bag.close()
 	else:
-		bag.open("C://Users//dgomes//Desktop//bag.txt", File.WRITE)
+		bag.open(path, File.WRITE)
+		for i in range(0, 11):
+			bag.store_string("------\n\n")
 		bag.close()
 	
 	# Setting up sprites
@@ -39,12 +51,12 @@ func _ready():
 	$Label_Bag.rect_position = Vector2(-3.55, -27)
 	$Label_Bag.show()
 	
-	$Label_Items.text = "asaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa"
+	$Label_Items.text = items_1
 	$Label_Items.rect_scale = Vector2(0.15, 0.15)
 	$Label_Items.rect_position = Vector2(-23, -18)
 	$Label_Items.show()
 	
-	$Label_Items_2.text = "asaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa\n\nasaasa"
+	$Label_Items_2.text = items_2
 	$Label_Items_2.rect_scale = Vector2(0.15, 0.15)
 	$Label_Items_2.rect_position = Vector2(7.35, -18)
 	$Label_Items_2.show()
@@ -98,3 +110,17 @@ func get_menu_on():
 
 func get_bag_on():
 	return bag_on
+
+
+# Item handling function
+
+func add_item(val):
+	bag.open(path, File.WRITE)
+	
+	var text
+	
+	for i in range(0, 11):
+		if bag.get_line() != "------":
+			continue
+		else:
+			bag.store_var(val)

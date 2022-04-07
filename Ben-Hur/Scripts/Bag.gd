@@ -21,24 +21,33 @@ func _ready():
 	hide()
 	menu_on = true
 	bag_on = true
-	
 	# Checks if bag file exits, if not, creates file	bag = File.new()
-	path = "user://Desktop//bag.txt"
+	path = "C://Users//davi9//Desktop//bag.txt"
 	
 	bag = File.new()
 	
+	items_1 = ""
+	items_2 = ""
+	
 	if bag.file_exists(path) == true:
 		bag.open(path, File.READ)
-		for i in range(0, 11):
-			if i <= 5:
-				items_1 = bag.get_line()
+		for i in range(0, 24):
+			if i <= 10:
+				if bag.get_line() != "------\n":
+					pass
+				else:
+					pass
 			else:
-				items_2 = bag.get_line()
+				pass
 		bag.close()
 	else:
 		bag.open(path, File.WRITE)
-		for i in range(0, 11):
+		for i in range(0, 12):
 			bag.store_string("------\n\n")
+			if i <= 5:
+				items_1 += "------\n\n"
+			else:
+				items_2 += "------\n\n"
 		bag.close()
 	
 	# Setting up sprites

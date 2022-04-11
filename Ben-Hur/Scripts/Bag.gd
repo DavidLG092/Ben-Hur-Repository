@@ -82,6 +82,16 @@ func _process(delta):
 	# Controls line movement
 	if menu_on == false:
 		
+		bag.open(path, File.READ)
+		for i in range(0, 12):
+			if i <= 5:
+				items_1 += bag.get_line()
+				items_1 += "\n\n"
+			else:
+				items_2 += bag.get_line()
+				items_2 += "\n\n"
+		bag.close()
+		
 		show()
 		
 		if Input.is_action_just_pressed("move_down"):
@@ -97,7 +107,7 @@ func _process(delta):
 		
 		# Controls items and menu
 		if Input.is_action_just_pressed("interact_menu"):
-			pass
+			add_item("armor")
 		if Input.is_action_just_pressed("attack_confirm"):
 			pass
 		if Input.is_action_pressed("spare_reject"):
@@ -123,12 +133,24 @@ func get_bag_on():
 # Item handling function
 
 func add_item(val):
-	bag.open(path, File.WRITE)
+	bag.open(path, File.READ)
 	
-	var text
+	var text = []
+	var did = false
 	
 	for i in range(0, 11):
-		if bag.get_line() != "------":
-			continue
+		if bag.get_line() == "------":
+			if did == false:
+				text.append(val)
+				did = true
+			else:
+				text.append(bag.get_line())
 		else:
-			bag.store_var(val)
+			text.append(bag.get_line())
+	
+	bag.open(path, File.WRITE)
+	
+	for i in range(0, 11):
+		bag.store_string(text[i] + "\n")
+	
+	bag.close()

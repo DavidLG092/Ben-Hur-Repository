@@ -12,6 +12,8 @@ config_version=4
 
 config/name="Ben-Hur"
 run/main_scene="res://Scenes/Room_0.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Ben-Hur"
 config/icon="res://icon.png"
 
 [input]

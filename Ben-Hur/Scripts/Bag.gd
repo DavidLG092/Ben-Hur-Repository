@@ -22,7 +22,7 @@ func _ready():
 	menu_on = true
 	bag_on = true
 	# Checks if bag file exits, if not, creates file	bag = File.new()
-	path = "C://Users//davi9//Desktop//bag.txt"
+	path = "user://Files/bag.txt"
 	
 	bag = File.new()
 	
@@ -31,19 +31,18 @@ func _ready():
 	
 	if bag.file_exists(path) == true:
 		bag.open(path, File.READ)
-		for i in range(0, 24):
-			if i <= 10:
-				if bag.get_line() != "------\n":
-					pass
-				else:
-					pass
+		for i in range(0, 12):
+			if i <= 5:
+				items_1 += bag.get_line()
+				items_1 += "\n\n"
 			else:
-				pass
+				items_2 += bag.get_line()
+				items_2 += "\n\n"
 		bag.close()
 	else:
 		bag.open(path, File.WRITE)
 		for i in range(0, 12):
-			bag.store_string("------\n\n")
+			bag.store_string("------\n")
 			if i <= 5:
 				items_1 += "------\n\n"
 			else:

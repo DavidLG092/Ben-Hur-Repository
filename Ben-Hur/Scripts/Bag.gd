@@ -137,20 +137,24 @@ func add_item(val):
 	
 	var text = []
 	var did = false
+	var line
 	
-	for i in range(0, 11):
-		if bag.get_line() == "------":
+	for i in range(0, 12):
+		line = bag.get_line()
+		if line == "------":
 			if did == false:
 				text.append(val)
 				did = true
 			else:
-				text.append(bag.get_line())
+				text.append(line)
 		else:
-			text.append(bag.get_line())
+			text.append(line)
+	
+	bag.close()
 	
 	bag.open(path, File.WRITE)
 	
-	for i in range(0, 11):
-		bag.store_string(text[i] + "\n")
+	for i in range(0, 12):
+		bag.store_line(text[i])
 	
 	bag.close()

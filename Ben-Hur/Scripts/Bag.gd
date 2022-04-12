@@ -356,4 +356,17 @@ func update_bag():
 		
 		$Label_Items.text = items_1
 		$Label_Items_2.text = items_2
+
+
+func is_bag_full():
+	var is_full = false
+	var line
 	
+	for i in range(0, 12):
+		line = bag.get_line()
+		if line == "------":
+			is_full = false
+		else:
+			is_full = true
+	
+	return is_full

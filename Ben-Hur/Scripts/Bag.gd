@@ -98,9 +98,9 @@ func _process(delta):
 		
 		# Controls items and menu
 		if Input.is_action_just_pressed("interact_menu"):
-			remove_item($Sprite_Line)
+			remove_item()
 		if Input.is_action_just_pressed("attack_confirm"):
-			remove_item($Sprite_Line)
+			remove_item()
 		if Input.is_action_pressed("spare_reject"):
 			bag_on = false
 			menu_on = true
@@ -150,13 +150,13 @@ func add_item(val):
 	bag.close()
 
 
-func remove_item(val):
+func remove_item():
 	bag.open(path, File.READ)
 	
 	var text = []
 	
-	if val.position.x == -15:
-		match val.position.y:
+	if $Sprite_Line.position.x == -15:
+		match $Sprite_Line.position.y:
 			-14.5:
 				for i in range(0, 12):
 					if i != 0:
@@ -200,7 +200,7 @@ func remove_item(val):
 						bag.get_line()
 				text.append("------")
 	else:
-		match val.position.y:
+		match $Sprite_Line.position.y:
 			-14.5:
 				for i in range(0, 12):
 					if i != 6:
@@ -253,6 +253,89 @@ func remove_item(val):
 		bag.store_line(text[i])
 	
 	bag.close()
+
+
+func get_item():
+	var item
+	
+	if $Sprite_Line.position.x == -15:
+		match $Sprite_Line.position.x:
+			-14.5:
+				for i in range(0, 6):
+					if i != 0:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			-8.5:
+				for i in range(0, 6):
+					if i != 1:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			-2.5:
+				for i in range(0, 6):
+					if i != 2:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			4.5:
+				for i in range(0, 6):
+					if i != 3:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			10.5:
+				for i in range(0, 6):
+					if i != 4:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			16.5:
+				for i in range(0, 6):
+					if i != 5:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+	else:
+		match $Sprite_Line.position.x:
+			-14.5:
+				for i in range(6, 12):
+					if i != 6:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			-8.5:
+				for i in range(6, 12):
+					if i != 7:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			-2.5:
+				for i in range(6, 12):
+					if i != 8:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			4.5:
+				for i in range(6, 12):
+					if i != 9:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			10.5:
+				for i in range(6, 12):
+					if i != 10:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+			16.5:
+				for i in range(6, 12):
+					if i != 11:
+						bag.get_line()
+					else:
+						item = bag.get_line()
+						
+	return item
 
 
 # Updates items list

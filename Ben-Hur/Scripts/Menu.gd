@@ -200,3 +200,13 @@ func set_menu_on(val):
 
 func get_menu_on():
 	return menu_on
+
+
+# Bag functions
+
+func get_bag():
+	return bag
+
+
+func get_item():
+	return $Bag.get_item()

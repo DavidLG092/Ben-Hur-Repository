@@ -26,3 +26,7 @@ func manage(player, menu):
 	
 	if menu.get_menu_on() == false:
 		player.set_menu_on(false)
+	
+	if menu.get_bag() == true:
+		if Input.is_action_just_pressed("interact_menu"):
+			player.use_item(menu.get_item())

@@ -7,6 +7,7 @@ extends Object
 
 # Item variables
 var name
+var type
 var strength # Named "strength" but can also be used to determine item effectiveness
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,13 @@ func set_name(val):
 
 func get_name():
 	return name
+
+
+func set_type(val):
+	type = val
+
+func get_type():
+	return type
 
 
 func set_strength(val):

@@ -5,9 +5,6 @@ extends Area2D
 # var a = 2
 # var b = "text"
 
-# Class constants
-const item = preload("res://Scripts/Item.gd")
-
 # Movement variables
 var screen_size
 

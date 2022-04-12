@@ -100,7 +100,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("interact_menu"):
 			remove_item($Sprite_Line)
 		if Input.is_action_just_pressed("attack_confirm"):
-			add_item("armor")
+			remove_item($Sprite_Line)
 		if Input.is_action_pressed("spare_reject"):
 			bag_on = false
 			menu_on = true

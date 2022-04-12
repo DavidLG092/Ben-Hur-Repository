@@ -99,8 +99,8 @@ func _process(delta):
 		# Controls items and menu
 #		if Input.is_action_just_pressed("interact_menu"):
 #			remove_item()
-#		if Input.is_action_just_pressed("attack_confirm"):
-#			remove_item()
+		if Input.is_action_just_pressed("attack_confirm"):
+			remove_item()
 		if Input.is_action_pressed("spare_reject"):
 			bag_on = false
 			menu_on = true

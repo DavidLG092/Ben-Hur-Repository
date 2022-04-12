@@ -81,16 +81,7 @@ func _process(delta):
 	
 	# Controls line movement
 	if menu_on == false:
-		
-		bag.open(path, File.READ)
-		for i in range(0, 12):
-			if i <= 5:
-				items_1 += bag.get_line()
-				items_1 += "\n\n"
-			else:
-				items_2 += bag.get_line()
-				items_2 += "\n\n"
-		bag.close()
+		update_bag()
 		
 		show()
 		
@@ -158,3 +149,22 @@ func add_item(val):
 		bag.store_line(text[i])
 	
 	bag.close()
+
+func update_bag():
+		
+		items_1 = ""
+		items_2 = ""
+		
+		bag.open(path, File.READ)
+		for i in range(0, 12):
+			if i <= 5:
+				items_1 += bag.get_line()
+				items_1 += "\n\n"
+			else:
+				items_2 += bag.get_line()
+				items_2 += "\n\n"
+		bag.close()
+		
+		$Label_Items.text = items_1
+		$Label_Items_2.text = items_2
+	

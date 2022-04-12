@@ -29,4 +29,5 @@ func manage(player, menu):
 	
 	if menu.get_bag() == true:
 		if Input.is_action_just_pressed("interact_menu"):
+			menu.remove_item()
 			player.use_item(menu.get_item())

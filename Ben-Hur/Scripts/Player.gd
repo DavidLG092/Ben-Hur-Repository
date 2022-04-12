@@ -168,3 +168,8 @@ func get_strength():
 func set_menu_on(val):
 	menu_on = val
 
+
+# Item functions
+
+func use_item(val):
+	pass

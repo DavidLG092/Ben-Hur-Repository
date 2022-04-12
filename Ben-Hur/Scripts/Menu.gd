@@ -210,3 +210,7 @@ func get_bag():
 
 func get_item():
 	return $Bag.get_item()
+
+
+func remove_item():
+	$Bag.remove_item()

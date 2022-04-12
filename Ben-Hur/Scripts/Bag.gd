@@ -98,9 +98,9 @@ func _process(delta):
 		
 		# Controls items and menu
 		if Input.is_action_just_pressed("interact_menu"):
-			add_item("armor")
+			remove_item($Sprite_Line)
 		if Input.is_action_just_pressed("attack_confirm"):
-			pass
+			add_item("armor")
 		if Input.is_action_pressed("spare_reject"):
 			bag_on = false
 			menu_on = true
@@ -122,7 +122,6 @@ func get_bag_on():
 
 
 # Item handling function
-
 func add_item(val):
 	bag.open(path, File.READ)
 	
@@ -150,6 +149,113 @@ func add_item(val):
 	
 	bag.close()
 
+
+func remove_item(val):
+	bag.open(path, File.READ)
+	
+	var text = []
+	
+	if val.position.x == -15:
+		match val.position.y:
+			-14.5:
+				for i in range(0, 12):
+					if i != 0:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			-8.5:
+				for i in range(0, 12):
+					if i != 1:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			-2.5:
+				for i in range(0, 12):
+					if i != 2:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			4.5:
+				for i in range(0, 12):
+					if i != 3:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			10.5:
+				for i in range(0, 12):
+					if i != 4:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			16.5:
+				for i in range(0, 12):
+					if i != 5:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+	else:
+		match val.position.y:
+			-14.5:
+				for i in range(0, 12):
+					if i != 6:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			-8.5:
+				for i in range(0, 12):
+					if i != 7:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			-2.5:
+				for i in range(0, 12):
+					if i != 8:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			4.5:
+				for i in range(0, 12):
+					if i != 9:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			10.5:
+				for i in range(0, 12):
+					if i != 10:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+			16.5:
+				for i in range(0, 12):
+					if i != 11:
+						text.append(bag.get_line())
+					else:
+						bag.get_line()
+				text.append("------")
+						
+	
+	bag.close()
+	
+	bag.open(path, File.WRITE)
+	
+	for i in range(0, 12):
+		bag.store_line(text[i])
+	
+	bag.close()
+
+
+# Updates items list
 func update_bag():
 		
 		items_1 = ""

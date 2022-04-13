@@ -170,6 +170,19 @@ func set_menu_on(val):
 
 
 # Item functions
-
 func use_item(val):
-	pass
+	match val.get_type():
+		1:
+			shield += val.get_strength()
+			if shield >= 100:
+				shield = 100
+		2:
+			strength += val.get_strength()
+			if strength >= 100:
+				strength = 100
+		3:
+			life += val.get_strength()
+			if life >= 100:
+				life = 100
+		4:
+			pass

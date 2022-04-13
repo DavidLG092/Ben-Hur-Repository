@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/Arcade/ARCADE_N.TTF" type="DynamicFontData" id=1]
-[ext_resource path="res://Scripts/Bag.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/New_Bag.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Bag/Images/bag.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Menu/Images/Menu/menu_line.png" type="Texture" id=4]
 

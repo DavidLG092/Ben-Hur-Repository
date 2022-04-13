@@ -145,7 +145,7 @@ func add_item(val):
 	bag.open(path, File.WRITE)
 	
 	for i in range(0, 12):
-		bag.store_line(text[i])
+		bag.store_var(text[i])
 	
 	bag.close()
 

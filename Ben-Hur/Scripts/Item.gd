@@ -6,7 +6,12 @@ extends Object
 # var b = "text"
 
 # Guide variables
-var type_guide
+var type_guide = {
+	1: "Armor",
+	2: "Weapon",
+	3: "Heal",
+	4: "Misc",
+}
 
 # Item variables
 var name
@@ -15,12 +20,7 @@ var strength # Named "strength" but can also be used to determine item effective
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	type_guide = {
-		1: "Armor",
-		2: "Weapon",
-		3: "Heal",
-		4: "Misc",
-	}
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -30,8 +30,11 @@ func _ready():
 func create_item(nm, tp, st):
 	name = nm
 	
-	if tp in type_guide:
-		type = tp
+	#if tp in type_guide:
+	#	type = tp
+	
+	if tp in type_guide.keys():
+			type = type_guide[tp]
 		
 	if (st >= 0 and st <= 100) and st % 10 == 0:
 		strength = st
@@ -44,8 +47,8 @@ func get_name():
 
 
 func set_type(val):
-	if val in type_guide:
-		type = val
+	if val in type_guide.keys():
+		type = type_guide[val]
 
 func get_type():
 	return type
